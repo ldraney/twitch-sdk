@@ -1,5 +1,7 @@
 # twitch-sdk
 
+[![PyPI](https://img.shields.io/pypi/v/twitch-sdk)](https://pypi.org/project/twitch-sdk/)
+
 Complete Twitch Helix API SDK with Pydantic validation for 170+ endpoints.
 
 ## Installation
@@ -7,6 +9,19 @@ Complete Twitch Helix API SDK with Pydantic validation for 170+ endpoints.
 ```bash
 pip install twitch-sdk
 ```
+
+## Credentials Setup
+
+Create `~/.twitch-secrets/.env` with your Twitch credentials:
+
+```bash
+TWITCH_CLIENT_ID=your_client_id
+TWITCH_CLIENT_SECRET=your_client_secret
+TWITCH_ACCESS_TOKEN=your_access_token
+TWITCH_REFRESH_TOKEN=your_refresh_token
+```
+
+See [twitch-client](https://github.com/ldraney/twitch-client) for detailed setup instructions.
 
 ## Usage
 
