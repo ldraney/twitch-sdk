@@ -519,19 +519,17 @@ name = "twitch-client"
 version = "0.1.0"
 description = "Twitch OAuth client with token management and authenticated HTTP requests"
 optional = false
-python-versions = "^3.10"
+python-versions = "<4.0,>=3.10"
 groups = ["main"]
-files = []
-develop = true
+files = [
+    {file = "twitch_client-0.1.0-py3-none-any.whl", hash = "sha256:b1225304d931323c4d9ed08561ec7f290f81b68abfb18135a3a5efa7685a8fb2"},
+    {file = "twitch_client-0.1.0.tar.gz", hash = "sha256:51b7895b4dd9faf504d2fd07dfb4be4235083a7c5c484210eb73a18908cc6c2b"},
+]
 
 [package.dependencies]
-httpx = "^0.27.0"
-pydantic = "^2.0"
-pydantic-settings = "^2.0"
-
-[package.source]
-type = "directory"
-url = "../twitch-client"
+httpx = ">=0.27.0,<0.28.0"
+pydantic = ">=2.0,<3.0"
+pydantic-settings = ">=2.0,<3.0"
 
 [[package]]
 name = "typing-extensions"
@@ -646,4 +644,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.10"
-content-hash = "e07fc53e90c6d68fb0349fafbbad3aa1a6c278e23828f263928b3081cd9ed944"
+content-hash = "aff753520f167b28cc223dfeaf00359ef75ee12caab29b9d66bcca2983e6912f"
