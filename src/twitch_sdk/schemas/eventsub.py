@@ -70,11 +70,16 @@ class DeleteEventSubSubscriptionRequest(TwitchBaseModel):
 class WebSocketWelcome(TwitchBaseModel):
     """WebSocket welcome message."""
 
-    session_id: str
+    id: str
     status: str
     connected_at: datetime
     keepalive_timeout_seconds: int
     reconnect_url: str | None = None
+
+    @property
+    def session_id(self) -> str:
+        """Alias for id field (Twitch API uses 'id')."""
+        return self.id
 
 
 class WebSocketNotification(TwitchBaseModel):
