@@ -4,6 +4,24 @@ version = "0.1.1"
 description = "Complete Twitch Helix API SDK with Pydantic validation for 170+ endpoints"
 authors = ["ldraney"]
 readme = "README.md"
+license = "MIT"
+homepage = "https://github.com/ldraney/twitch-sdk"
+repository = "https://github.com/ldraney/twitch-sdk"
+keywords = ["twitch", "api", "sdk", "streaming", "pydantic", "helix", "async"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Internet :: WWW/HTTP",
+    "Framework :: AsyncIO",
+    "Typing :: Typed",
+]
 packages = [{include = "twitch_sdk", from = "src"}]
 
 [tool.poetry.dependencies]

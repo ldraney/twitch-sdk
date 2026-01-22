@@ -1,13 +1,42 @@
 # twitch-sdk
 
 [![PyPI](https://img.shields.io/pypi/v/twitch-sdk)](https://pypi.org/project/twitch-sdk/)
+[![Python](https://img.shields.io/pypi/pyversions/twitch-sdk)](https://pypi.org/project/twitch-sdk/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Complete Twitch Helix API SDK with Pydantic validation for 170+ endpoints.
+
+## Features
+
+- **Full API Coverage** - All Twitch Helix endpoints (chat, streams, moderation, etc.)
+- **Pydantic Validation** - Type-safe request/response models with automatic validation
+- **Async/Await** - Built for modern Python async applications
+- **EventSub WebSocket** - Real-time event subscriptions built-in
+- **Auto Token Refresh** - Handles OAuth token management via [twitch-client](https://github.com/ldraney/twitch-client)
 
 ## Installation
 
 ```bash
 pip install twitch-sdk
+```
+
+## Quick Start
+
+```python
+import asyncio
+from twitch_sdk import TwitchSDK
+from twitch_sdk.schemas.streams import GetStreamsRequest
+
+async def main():
+    async with TwitchSDK() as sdk:
+        # Get live streams for "Just Chatting"
+        params = GetStreamsRequest(game_id=["509658"])
+        streams = await sdk.streams.get_streams(sdk.http, params)
+
+        for stream in streams.data:
+            print(f"{stream.user_name}: {stream.title} ({stream.viewer_count} viewers)")
+
+asyncio.run(main())
 ```
 
 ## Credentials Setup
@@ -23,25 +52,7 @@ TWITCH_REFRESH_TOKEN=your_refresh_token
 
 See [twitch-client](https://github.com/ldraney/twitch-client) for detailed setup instructions.
 
-## Usage
-
-### Basic Usage
-
-```python
-import asyncio
-from twitch_sdk import TwitchSDK
-from twitch_sdk.schemas.streams import GetStreamsRequest
-
-async def main():
-    async with TwitchSDK() as sdk:
-        # Get live streams
-        params = GetStreamsRequest(game_id=["509658"])  # Just Chatting
-        streams = await sdk.streams.get_streams(sdk.http, params)
-        for stream in streams.data:
-            print(f"{stream.user_name}: {stream.title}")
-
-asyncio.run(main())
-```
+## Usage Examples
 
 ### Send Chat Message
 
@@ -104,35 +115,37 @@ async def main():
                 print(f"Event: {event}")
 ```
 
-## Endpoints
+## API Coverage
 
 The SDK covers all Twitch Helix API endpoints:
 
-- **Ads**: start_commercial, get_ad_schedule, snooze_next_ad
-- **Analytics**: get_extension_analytics, get_game_analytics
-- **Bits**: get_bits_leaderboard, get_cheermotes
-- **Channel Points**: custom rewards, redemptions
-- **Channels**: get/modify channel info, followers, VIPs
-- **Charity**: campaigns, donations
-- **Chat**: messages, emotes, badges, settings, shoutouts
-- **Clips**: create_clip, get_clips
-- **EventSub**: subscriptions, WebSocket, conduits
-- **Games**: get_games, get_top_games
-- **Goals**: creator goals
-- **Guest Star**: sessions, invites, slots
-- **Hype Train**: events
-- **Moderation**: bans, blocked terms, AutoMod, moderators
-- **Polls**: create, get, end
-- **Predictions**: create, get, end
-- **Raids**: start, cancel
-- **Schedule**: segments, iCalendar
-- **Search**: categories, channels
-- **Streams**: get_streams, markers, stream key
-- **Subscriptions**: broadcaster subscriptions
-- **Teams**: get teams
-- **Users**: get/update users, blocks, extensions
-- **Videos**: get, delete
-- **Whispers**: send whisper
+| Category | Endpoints |
+|----------|-----------|
+| **Ads** | start_commercial, get_ad_schedule, snooze_next_ad |
+| **Analytics** | get_extension_analytics, get_game_analytics |
+| **Bits** | get_bits_leaderboard, get_cheermotes |
+| **Channel Points** | custom rewards, redemptions |
+| **Channels** | get/modify channel info, followers, VIPs, editors |
+| **Charity** | campaigns, donations |
+| **Chat** | messages, emotes, badges, settings, shoutouts |
+| **Clips** | create_clip, get_clips |
+| **EventSub** | subscriptions, WebSocket, conduits |
+| **Games** | get_games, get_top_games |
+| **Goals** | creator goals |
+| **Guest Star** | sessions, invites, slots |
+| **Hype Train** | events |
+| **Moderation** | bans, blocked terms, AutoMod, shield mode |
+| **Polls** | create, get, end |
+| **Predictions** | create, get, end |
+| **Raids** | start, cancel |
+| **Schedule** | segments, iCalendar |
+| **Search** | categories, channels |
+| **Streams** | get_streams, markers, stream key |
+| **Subscriptions** | broadcaster subscriptions |
+| **Teams** | get teams |
+| **Users** | get/update users, blocks, extensions |
+| **Videos** | get, delete |
+| **Whispers** | send whisper |
 
 ## Pydantic Validation
 
@@ -150,10 +163,16 @@ params = SendMessageRequest(
 
 # Access validated fields
 print(params.broadcaster_id)
+
+# Serialize for API
+print(params.model_dump(exclude_none=True))
 ```
 
-## Dependencies
+## Related Projects
 
-- twitch-client (auth layer)
-- pydantic
-- websockets (for EventSub)
+- [twitch-client](https://github.com/ldraney/twitch-client) - OAuth layer with auto token refresh
+- [twitch-mcp](https://github.com/ldraney/twitch-mcp) - MCP server exposing this SDK as AI tools
+
+## License
+
+MIT License - see [LICENSE](LICENSE) for details.
