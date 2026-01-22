@@ -2,7 +2,7 @@
 
 from datetime import datetime
 
-from pydantic import Field
+from pydantic import Field, field_validator
 
 from .base import TwitchBaseModel
 
@@ -21,6 +21,14 @@ class SearchChannel(TwitchBaseModel):
     thumbnail_url: str
     title: str
     started_at: datetime | None = None
+
+    @field_validator("started_at", mode="before")
+    @classmethod
+    def empty_string_to_none(cls, v):
+        """Convert empty string to None for offline channels."""
+        if v == "":
+            return None
+        return v
 
 
 class SearchChannelsRequest(TwitchBaseModel):

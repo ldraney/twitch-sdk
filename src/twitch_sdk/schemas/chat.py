@@ -185,3 +185,7 @@ class GetShoutoutsRequest(TwitchBaseModel):
 
     broadcaster_id: str
     moderator_id: str
+
+
+# Alias for common naming convention
+SendChatMessageRequest = SendMessageRequest

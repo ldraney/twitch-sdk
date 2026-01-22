@@ -172,3 +172,7 @@ async def send_chat_message(
     data = params.model_dump(exclude_none=True)
     response = await client.post("/chat/messages", data=data)
     return TwitchResponse[SendMessageResponse].model_validate(response)
+
+
+# Alias for common naming convention
+send_announcement = send_chat_announcement

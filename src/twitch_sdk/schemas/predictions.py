@@ -20,12 +20,12 @@ class TopPredictor(TwitchBaseModel):
 class PredictionOutcome(TwitchBaseModel):
     """Prediction outcome data."""
 
-    id: str
+    id: str | None = None
     title: str
     users: int = 0
     channel_points: int = 0
     top_predictors: list[TopPredictor] | None = None
-    color: str  # BLUE, PINK
+    color: str | None = None  # BLUE, PINK
 
 
 class Prediction(TwitchBaseModel):

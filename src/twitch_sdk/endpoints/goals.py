@@ -20,3 +20,7 @@ async def get_creator_goals(
     query = params.model_dump(exclude_none=True)
     response = await client.get("/goals", params=query)
     return TwitchResponse[Goal].model_validate(response)
+
+
+# Alias for common naming convention
+get_goals = get_creator_goals

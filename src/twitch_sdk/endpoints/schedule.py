@@ -35,7 +35,11 @@ async def get_channel_icalendar(
     """Get a broadcaster's schedule as iCalendar data."""
     query = params.model_dump(exclude_none=True)
     response = await client.get("/schedule/icalendar", params=query)
-    return response
+    if isinstance(response, str):
+        return response
+    if isinstance(response, dict) and "data" in response:
+        return str(response.get("data", ""))
+    return str(response)
 
 
 async def update_channel_stream_schedule(

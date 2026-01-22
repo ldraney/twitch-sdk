@@ -10,7 +10,7 @@ from .base import TwitchBaseModel
 class PollChoice(TwitchBaseModel):
     """Poll choice data."""
 
-    id: str
+    id: str | None = None  # Optional for edge cases
     title: str
     votes: int = 0
     channel_points_votes: int = 0

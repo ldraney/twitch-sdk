@@ -46,3 +46,7 @@ class GetHypeTrainEventsRequest(TwitchBaseModel):
     broadcaster_id: str
     first: int | None = Field(default=None, le=100)
     after: str | None = None
+
+
+# Alias for common naming convention
+GetHypeTrainRequest = GetHypeTrainEventsRequest

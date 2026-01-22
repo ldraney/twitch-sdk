@@ -121,3 +121,7 @@ async def remove_channel_vip(
     """
     query = params.model_dump(exclude_none=True)
     await client.delete("/channels/vips", params=query)
+
+
+# Alias for common naming convention
+modify_channel_info = modify_channel_information

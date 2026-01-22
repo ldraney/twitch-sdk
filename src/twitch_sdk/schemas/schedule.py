@@ -100,3 +100,7 @@ class DeleteScheduleSegmentRequest(TwitchBaseModel):
 
     broadcaster_id: str
     id: str
+
+
+# Alias for common naming convention
+GetChannelScheduleRequest = GetScheduleRequest
