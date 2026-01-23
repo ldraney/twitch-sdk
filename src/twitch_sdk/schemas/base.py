@@ -3,7 +3,7 @@
 from datetime import datetime
 from typing import Generic, TypeVar
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, field_validator
 
 T = TypeVar("T")
 
@@ -34,5 +34,13 @@ class TwitchResponse(TwitchBaseModel, Generic[T]):
 class DateRange(TwitchBaseModel):
     """Date range for analytics."""
 
-    started_at: datetime
-    ended_at: datetime
+    started_at: datetime | None = None
+    ended_at: datetime | None = None
+
+    @field_validator("started_at", "ended_at", mode="before")
+    @classmethod
+    def empty_string_to_none(cls, v):
+        """Convert empty strings to None for optional datetime fields."""
+        if v == "":
+            return None
+        return v
