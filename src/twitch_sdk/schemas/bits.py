@@ -34,21 +34,14 @@ class GetBitsLeaderboardResponse(TwitchBaseModel):
     total: int
 
 
-class CheermoteImage(TwitchBaseModel):
-    """Cheermote image URLs."""
-
-    url_1x: str
-    url_2x: str
-    url_4x: str
-
-
 class CheermoteTier(TwitchBaseModel):
     """Cheermote tier data."""
 
     min_bits: int
     id: str
     color: str
-    images: dict[str, dict[str, CheermoteImage]]
+    # images structure: {"dark": {"animated": {"1": url, "2": url, ...}, "static": {...}}, "light": {...}}
+    images: dict[str, dict[str, dict[str, str]]]
     can_cheer: bool
     show_in_bits_card: bool
 
