@@ -64,8 +64,11 @@ async def get_eventsub_subscriptions(
 async def get_conduits(
     client: "TwitchHTTPClient",
 ) -> TwitchResponse[Conduit]:
-    """Get list of conduits."""
-    response = await client.get("/eventsub/conduits")
+    """Get list of conduits.
+
+    Note: Requires app access token (not user token).
+    """
+    response = await client.get_app("/eventsub/conduits")
     return TwitchResponse[Conduit].model_validate(response)
 
 
@@ -73,9 +76,12 @@ async def create_conduit(
     client: "TwitchHTTPClient",
     params: CreateConduitRequest,
 ) -> TwitchResponse[Conduit]:
-    """Create a conduit."""
+    """Create a conduit.
+
+    Note: Requires app access token (not user token).
+    """
     data = params.model_dump(exclude_none=True)
-    response = await client.post("/eventsub/conduits", data=data)
+    response = await client.post_app("/eventsub/conduits", data=data)
     return TwitchResponse[Conduit].model_validate(response)
 
 
@@ -83,9 +89,12 @@ async def update_conduit(
     client: "TwitchHTTPClient",
     params: UpdateConduitRequest,
 ) -> TwitchResponse[Conduit]:
-    """Update a conduit's shard count."""
+    """Update a conduit's shard count.
+
+    Note: Requires app access token (not user token).
+    """
     data = params.model_dump(exclude_none=True)
-    response = await client.patch("/eventsub/conduits", data=data)
+    response = await client.patch_app("/eventsub/conduits", data=data)
     return TwitchResponse[Conduit].model_validate(response)
 
 
@@ -93,18 +102,24 @@ async def delete_conduit(
     client: "TwitchHTTPClient",
     params: DeleteConduitRequest,
 ) -> None:
-    """Delete a conduit."""
+    """Delete a conduit.
+
+    Note: Requires app access token (not user token).
+    """
     query = params.model_dump(exclude_none=True)
-    await client.delete("/eventsub/conduits", params=query)
+    await client.delete_app("/eventsub/conduits", params=query)
 
 
 async def get_conduit_shards(
     client: "TwitchHTTPClient",
     params: GetConduitShardsRequest,
 ) -> TwitchResponse[ConduitShard]:
-    """Get shards for a conduit."""
+    """Get shards for a conduit.
+
+    Note: Requires app access token (not user token).
+    """
     query = params.model_dump(exclude_none=True)
-    response = await client.get("/eventsub/conduits/shards", params=query)
+    response = await client.get_app("/eventsub/conduits/shards", params=query)
     return TwitchResponse[ConduitShard].model_validate(response)
 
 
@@ -112,9 +127,12 @@ async def update_conduit_shards(
     client: "TwitchHTTPClient",
     params: UpdateConduitShardsRequest,
 ) -> TwitchResponse[ConduitShard]:
-    """Update conduit shards."""
+    """Update conduit shards.
+
+    Note: Requires app access token (not user token).
+    """
     data = params.model_dump(exclude_none=True)
-    response = await client.patch("/eventsub/conduits/shards", data=data)
+    response = await client.patch_app("/eventsub/conduits/shards", data=data)
     return TwitchResponse[ConduitShard].model_validate(response)
 
 

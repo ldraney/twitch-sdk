@@ -516,14 +516,14 @@ files = [
 
 [[package]]
 name = "twitch-client"
-version = "0.1.0"
+version = "0.2.0"
 description = "Twitch OAuth client with token management and authenticated HTTP requests"
 optional = false
 python-versions = "<4.0,>=3.10"
 groups = ["main"]
 files = [
-    {file = "twitch_client-0.1.0-py3-none-any.whl", hash = "sha256:b1225304d931323c4d9ed08561ec7f290f81b68abfb18135a3a5efa7685a8fb2"},
-    {file = "twitch_client-0.1.0.tar.gz", hash = "sha256:51b7895b4dd9faf504d2fd07dfb4be4235083a7c5c484210eb73a18908cc6c2b"},
+    {file = "twitch_client-0.2.0-py3-none-any.whl", hash = "sha256:2f2a3b79d8e37377784ea0129de113cff2ca0e1c52f6ed96416501a9fc5687b2"},
+    {file = "twitch_client-0.2.0.tar.gz", hash = "sha256:2b60f9cb4febf9732edbb0e9cb9c88c873a9cbbd7e3db547888215c7b8568ac9"},
 ]
 
 [package.dependencies]
@@ -644,4 +644,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.10"
-content-hash = "aff753520f167b28cc223dfeaf00359ef75ee12caab29b9d66bcca2983e6912f"
+content-hash = "657737037cb4edf388abda89486c8d27dc2b2885b8c3c85a838de3612a899d9a"
