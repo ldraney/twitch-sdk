@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "twitch-sdk"
-version = "0.1.1"
+version = "0.1.2"
 description = "Complete Twitch Helix API SDK with Pydantic validation for 170+ endpoints"
 authors = ["ldraney"]
 readme = "README.md"
